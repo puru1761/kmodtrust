@@ -12,21 +12,28 @@ to be met:
 
 1. Install the `rust` toolchain using the instructions at [rustup](https://rustup.rs/)
 
-## Building - utility
+## Build
 
-Build the utility using `cargo`
+Build the utility using `make`
 
-```
-cargo build
-```
-
-## Building test
-
-To build the test module and generate signing keys do the following:
-
-```
-cd test
+```shell
 make
+```
+
+## Installation
+
+To install it to `${PWD}`, use:
+
+```shell
+make install
+```
+
+To install `kmodtrust` to a custom root, modify the `INSTALL_PREFIX` variable:
+
+```shell
+make install INSTALL_PREFIX=/path/to/install-root
+# For example
+make install INSTALL_PREFIX=/usr/local
 ```
 
 ## Usage
