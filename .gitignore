@@ -1,0 +1,11 @@
+/target
+Cargo.lock
+/test/certs/*.x509
+/test/certs/*.pem
+/test/module/*.cmd
+/test/module/*.o
+/test/module/*.ko
+/test/module/*.mod*
+/test/*.cmd
+/test/Module.symvers
+/test/modules.order

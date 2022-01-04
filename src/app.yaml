@@ -1,0 +1,70 @@
+name: kmodtrust
+version: "0.1.0"
+author: "Puru Kulkarni <puruk@protonmail.com>"
+about: "Linux Kernel Module Integrity"
+subcommands:
+    - sign:
+        about: "Sign a Linux Kernel Module"
+        version: "0.1.0"
+        author: "Puru Kulkarni <puruk@protonmail.com>"
+        args:
+            - verbose:
+                help: "Sets the level of verbosity"
+                short: v
+                multiple: true
+                long: verbose
+            - raw_sig:
+                help: Append a raw detached signature to MODULE
+                short: s
+                long: sig-file
+                value_name: SIG_FILE
+                takes_value: true
+            - save_sig:
+                help: "Save the signature in a separate .p7s file"
+                short: p
+                long: save-sig
+            - sign_only:
+                help: "Only perform the signing operation (Do not append signature to file)"
+                short: d
+                long: sign-only
+            #
+            # Unfortunately openssl-rust does not yet support setting of the
+            # digest algorithm with CmsContentInfo, for the purpose of signing.
+            # Therefore, we cannot still provide this functionality until the
+            # the following is resolved:
+            #   https://github.com/sfackler/rust-openssl/pull/1034/files
+            #
+            # Once this is done modsec will support his functionality as well.
+            # As for now, 'sha256' is the only available digest to be used.
+            #
+            # - HASH_ALGO:
+            #    help: "The hash algorithm to use for signing"
+            #    long: hash-algo
+            #    short: m
+            #    default_value: "sha256"
+            #    takes_value: true
+            #    value_name: HASH_ALGO
+            - KEY:
+                help: "The key to use for signing"
+                long: key
+                short: k
+                required: true
+                takes_value: true
+                value_name: KEY
+            - X509:
+                help: "The X509 certificate corresponding to KEY"
+                long: x509-cert
+                short: c
+                required: true
+                takes_value: true
+                value_name: X509_FILE
+            - MODULE:
+                help: "The LKM to be signed"
+                required: true
+                index: 1
+            - dest:
+                help: "The output file to store the signed module"
+                short: o
+                long: out-file
+                value_name: FILE
+                takes_value: true
