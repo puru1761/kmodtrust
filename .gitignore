@@ -1,5 +1,8 @@
-/target
+/bin
 Cargo.lock
+.crates.toml
+.crates2.json
+/target
 /test/certs/*.x509
 /test/certs/*.pem
 /test/module/*.cmd
@@ -9,3 +12,4 @@ Cargo.lock
 /test/*.cmd
 /test/Module.symvers
 /test/modules.order
+.vscode
