@@ -12,7 +12,7 @@ OPENSSL_CONFIG = $(CERTSDIR)/x509.genkey
 PRIVATEKEY = $(CERTSDIR)/kmodtrust_key.pem
 CERTIFICATE = $(CERTSDIR)/kmodtrust.x509
 MODULEDIR = $(PWD)/test
-INSTALLDIR ?= $(PWD)
+INSTALL_PREFIX ?= $(PWD)
 
 all:
 	cargo build --release
@@ -22,11 +22,11 @@ all:
 		-keyout $(PRIVATEKEY) \
 
 install:
-	cargo install --bin $(PROG) --path $(INSTALLDIR) --root $(INSTALLDIR)
+	cargo install --bin $(PROG) --root $(INSTALL_PREFIX) --path $(PWD)
 
 
 clean:
 	cargo clean
 	make -C /lib/modules/$(shell uname -r)/build M=$(MODULEDIR) clean
 	$(RM) $(CERTSDIR)/*.x509 $(CERTSDIR)/*.pem
-	$(RM) -r $(INSTALLDIR)/bin
+	$(RM) -r $(INSTALL_PREFIX)/bin
