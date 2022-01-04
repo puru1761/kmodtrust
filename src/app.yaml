@@ -1,4 +1,4 @@
-name: kmodtrust
+name: KmodtRust
 version: "0.1.0"
 author: "Puru Kulkarni <puruk@protonmail.com>"
 about: "Linux Kernel Module Integrity"
