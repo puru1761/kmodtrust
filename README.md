@@ -1,5 +1,7 @@
 # KmodtRust - Integrity for Kernel Modules
 
+![License](https://img.shields.io/github/license/puru1761/kcapi)
+
 This repository contains the sources for the ``kmodtrust`` utility, which can
 be used to sign and verify Linux Kernel Modules. This is a `rust` based utility
 which can be installed as a `suid` binary so that private keys need not be
@@ -34,6 +36,29 @@ To install `kmodtrust` to a custom root, modify the `INSTALL_PREFIX` variable:
 make install INSTALL_PREFIX=/path/to/install-root
 # For example
 make install INSTALL_PREFIX=/usr/local
+```
+
+## Test
+
+To build the test module under the `test` directory, ensure that you have
+the kernel development headers installed.
+
+Once, you are sure that you can build kernel modules on your machine, build
+the kernel module and generate keys for signing:
+
+```shell
+cd test
+make
+```
+
+Once the required artifacts are generated, you can sign the generated ``hello.ko``
+using:
+
+```shell
+../target/release/kmodtrust sign \
+    --key certs/kmodtrust_key.pem \
+    --x509-cert certs/kmodtrust.x509 \
+    module/hello.ko
 ```
 
 ## Usage
